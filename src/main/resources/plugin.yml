@@ -1,0 +1,8 @@
+name: PAPIUnderscoreReplacer
+version: 1.0
+main: com.jeff_media.papiunderscorereplacer.PAPIUnderscoreReplacer
+api-version: 1.13
+authors: [mfnalex, JEFF Media GbR]
+website: "https://paypal.me/mfnalex"
+depend:
+  - PlaceholderAPI
