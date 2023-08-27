@@ -57,8 +57,9 @@ If the `<search>` or `<replacement>` part is not in backticks, you don't have to
 
 ## Note
 
-This is a standalone plugin that hooks into PAPI, not an ecloud extension. You'll have to put the .jar into your
-plugins/ folder and restart the server.
+This is a standalone PlaceholderAPI expansion. Do NOT put it into your plugins, but into the `expansions` folder of PlaceholderAPI.
+
+I'm currently waiting to get an account on the PlaceholderAPI site, so I can submit it as official ECloud extension.
 
 [//]: # (## Todo)
 
