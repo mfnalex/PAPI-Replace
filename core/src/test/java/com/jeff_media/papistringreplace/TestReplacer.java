@@ -140,5 +140,55 @@ public class TestReplacer {
         assertReplaceEquals("\\", "/_\\_/");
     }
 
+    @Test
+    public void replace_Backslash_In_Backticks_With_Slash() {
+        // search     : \
+        // replace    : /
+        // text       : C:\Users\Jeff
+        // result     : C:/Users/Jeff
+        // placeholder: `\\`_/_C:\Users\Jeff
+        assertReplaceEquals("C:/Users/Jeff", "`\\\\`_/_C:\\Users\\Jeff");
+    }
+
+    @Test
+    public void replace_Slash_With_Backslash_In_Backticks() {
+        // search     : /
+        // replace    : \
+        // text       : /
+        // result     : \
+        // placeholder: /_`\\`_/
+        assertReplaceEquals("\\", "/_`\\\\`_/");
+    }
+
+    @Test
+    public void replace_NamespacedKey_With_Backslash() {
+        // search    : minecraft:sound/soundname
+        // replace   : minecraft:sound\soundname
+        // text      : The sound is called minecraft:sound/soundname!
+        // result    : The sound is called minecraft:sound\soundname!
+        // placeholder: minecraft:sound/soundname_minecraft:sound\soundname_The sound is called minecraft:sound/soundname!
+        assertReplaceEquals("The sound is called minecraft:sound\\soundname!", "minecraft:sound/soundname_minecraft:sound\\soundname_The sound is called minecraft:sound/soundname!");
+    }
+
+    @Test
+    public void replace_NamespacedKey_With_Backslash_Search_In_Backticks() {
+        // search    : minecraft:sound/soundname
+        // replace   : minecraft:sound\soundname
+        // text      : The sound is called minecraft:sound/soundname!
+        // result    : The sound is called minecraft:sound\soundname!
+        // placeholder: `minecraft:sound/soundname`_minecraft:sound\soundname_The sound is called minecraft:sound/soundname!
+        assertReplaceEquals("The sound is called minecraft:sound\\soundname!", "`minecraft:sound/soundname`_minecraft:sound\\soundname_The sound is called minecraft:sound/soundname!");
+    }
+
+    @Test
+    public void replace_NamespacedKey_With_Backslash_Replace_In_Backticks() {
+        // search    : minecraft:sound/soundname
+        // replace   : minecraft:sound\soundname
+        // text      : The sound is called minecraft:sound/soundname!
+        // result    : The sound is called minecraft:sound\soundname!
+        // placeholder: minecraft:sound/soundname_`minecraft:sound\\soundname`_The sound is called minecraft:sound/soundname!
+        assertReplaceEquals("The sound is called minecraft:sound\\soundname!", "minecraft:sound/soundname_`minecraft:sound\\\\soundname`_The sound is called minecraft:sound/soundname!");
+    }
+
 
 }

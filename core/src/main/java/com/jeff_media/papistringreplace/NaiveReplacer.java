@@ -23,10 +23,11 @@ public class NaiveReplacer implements Parser {
 
         for (final char current : input.toCharArray()) {
 
-            //System.out.println("Currenc char: " + current);
+            System.out.println("Current char: " + current);
 
             // If search and replace are already set, we're parsing the <text> section which does not require any special handling
             if (search != null && replace != null) {
+                System.out.println("    This is part of <text>");
                 builder.append(current);
                 continue;
             }
@@ -48,11 +49,16 @@ public class NaiveReplacer implements Parser {
                     lastWasEscape = false;
                     builder.append(Parser.ESCAPE);
                     continue;
-                } else if (current == Parser.BACKTICK) {
+                }
+                // Escape + Backtick = Backtick
+                else if (current == Parser.BACKTICK) {
                     lastWasEscape = false;
                     builder.append(Parser.BACKTICK);
                     continue;
-                } else if (current == Parser.UNDERSCORE) {
+                }
+                // Escape + Underscore
+                else if (current == Parser.UNDERSCORE) {
+                    // If we're not in backticks, the underscore means "end of section"
                     if(!inBackticks) {
                         builder.append(Parser.ESCAPE);
                         lastWasEscape = false;
@@ -78,7 +84,7 @@ public class NaiveReplacer implements Parser {
                     continue;
                     //ended = true;
                 } else {
-                    //System.out.println("Return null");
+                    System.out.println("Return null");
                     return null;
                 }
             }
@@ -101,15 +107,15 @@ public class NaiveReplacer implements Parser {
 
 
         if (replace == null) {
-            //System.out.println("replace is null");
+            System.out.println("replace is null");
             return null;
         }
 
         String result = builder.toString();
 
-        //System.out.println("Search: " + search);
-        //System.out.println("Replace: " + replace);
-        //System.out.println("Result: " + result);
+        System.out.println("Search: " + search);
+        System.out.println("Replace: " + replace);
+        System.out.println("Result: " + result);
 
         return new ReplaceArguments(search, replace, result);
     }

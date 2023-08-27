@@ -33,6 +33,16 @@ If your `<search>` or `<replacement>` contains any backticks, you have to escape
 
 `` %replace_<search_with_\`_backticks\`>_<replacement_with_\`_backticks\`>_<text>% ``
 
+#### Backslashes (`\`)
+To use a literal backslash, you have to escape it with another backslash only if the `<search>` or `<replacement>` part
+is in backticks:
+
+`` %replace_`<search_with_\\_backslash>`_<replacement>_<text>% ``
+
+If the `<search>` or `<replacement>` part is not in backticks, you don't have to escape the backslash:
+
+`` %replace_<search_with_\_backslash>_<replacement>_<text>% ``
+
 ### Basic Examples
 
 - Replace `foo` with `bar` in `my name is foo`:

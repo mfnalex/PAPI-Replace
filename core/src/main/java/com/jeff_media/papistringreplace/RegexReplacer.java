@@ -21,8 +21,8 @@ public class RegexReplacer implements Parser {
         Matcher matcher = PATTERN.matcher(input);
         if (!matcher.matches()) return null;
 
-        String search = Group.SEARCH.get(matcher);
-        String replace = Group.REPLACE.get(matcher);
+        String search = Group.SEARCH.get(matcher).replace("\\\\", "\\");
+        String replace = Group.REPLACE.get(matcher).replace("\\\\", "\\");
         String text = Group.TEXT.get(matcher);
 
         return new ReplaceArguments(search, replace, text);
