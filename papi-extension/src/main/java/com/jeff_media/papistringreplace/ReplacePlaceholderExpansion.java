@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+/**
+ * PlaceholderAPI expansion for to replace strings
+ */
 public class ReplacePlaceholderExpansion extends PlaceholderExpansion {
 
     private static final String version;
@@ -29,7 +32,7 @@ public class ReplacePlaceholderExpansion extends PlaceholderExpansion {
         version = tmpVersion;
     }
 
-    private final Parser replacer = new NaiveReplacer();
+    private final Parser replacer = new RegexReplacer();
 
     @Override
     public @NotNull String getIdentifier() {

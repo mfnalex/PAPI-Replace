@@ -120,5 +120,15 @@ public class TestReplacer {
         assertReplaceEquals("His name was `bar`.", "\\`foo\\`_\\`bar\\`_His name was `foo`.");
     }
 
+    @Test
+    public void replace_Backslash_With_Slash() {
+        // search     : \
+        // replace    : /
+        // text       : C:\Users\Jeff
+        // result     : C:/Users/Jeff
+        // placeholder: \_/_C:\Users\Jeff
+        assertReplaceEquals("C:/Users/Jeff", "\\_/_C:\\Users\\Jeff");
+    }
+
 
 }

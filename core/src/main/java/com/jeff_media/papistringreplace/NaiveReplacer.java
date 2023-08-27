@@ -3,15 +3,15 @@ package com.jeff_media.papistringreplace;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * A naive implementation of {@link Parser}. It parses the input String by iterating over all characters, returning null
+ * early if it's not a valid input.
+ */
 public class NaiveReplacer implements Parser {
 
     @Override
     public @Nullable ReplaceArguments parse(@NotNull String input) {
 
-//        System.out.println("Start parsing");
-//        System.out.println("Input: " + input);
-
-        char[] chars = input.toCharArray();
         StringBuilder builder = new StringBuilder();
 
         boolean inBackticks = false;
@@ -21,7 +21,9 @@ public class NaiveReplacer implements Parser {
         String search = null;
         String replace = null;
 
-        for (char current : chars) {
+        for (final char current : input.toCharArray()) {
+
+            // If search and replace are already set, we're parsing the <text> section which does not require any special handling
             if (search != null && replace != null) {
                 builder.append(current);
                 continue;
@@ -36,7 +38,10 @@ public class NaiveReplacer implements Parser {
                 isBeginOfPart = false;
             }
 
+            // If the last char was an escape, check if the current char is a backtick or an escape
             if (lastWasEscape) {
+
+                // Two escapes in a row are actually two escapes in a row!
                 if (current == Parser.ESCAPE) {
                     lastWasEscape = false;
                     builder.append(Parser.TWO_ESCAPES);
@@ -90,14 +95,7 @@ public class NaiveReplacer implements Parser {
             return null;
         }
 
-        String text = builder.toString();
-
-//        System.out.println("Done parsing:");
-//        System.out.println("Search: " + search);
-//        System.out.println("Replace: " + replace);
-//        System.out.println("Text: " + text);
-
-        return new ReplaceArguments(search, replace, text);
+        return new ReplaceArguments(search, replace, builder.toString());
     }
 
 }
