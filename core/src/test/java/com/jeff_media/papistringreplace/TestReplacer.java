@@ -7,12 +7,17 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class TestReplacer {
 
-    private final Parser regexReplacer = new RegexReplacer();
-    private final Parser naiveReplacer = new NaiveReplacer();
+    private static final Parser REGEX_REPLACER = new RegexReplacer();
+    private static final Parser NAIVE_REPLACER = new NaiveReplacer();
 
     @Test
-    public void replace_RegexNotMatching_Return_Null() {
-        assertNull(replace("test"));
+    public void replace_NotMatching_Return_Null() {
+        assertReplaceNull("test");
+    }
+
+    @Test
+    public void replace_Unespaced_Backtick_Return_Null() {
+        assertReplaceNull("f`o`o_bar_foo");
     }
 
     @Test
@@ -22,7 +27,7 @@ public class TestReplacer {
         // text       : foo
         // result     : bar
         // placeholder: foo_bar_foo
-        assertEquals("bar",replace("foo_bar_foo"));
+        assertReplaceEquals("bar","foo_bar_foo");
     }
 
     @Test
@@ -32,7 +37,7 @@ public class TestReplacer {
         // text       : foo
         // result     : bar
         // placeholder: `foo`_bar_foo
-        assertEquals("bar",replace("`foo`_bar_foo"));
+        assertReplaceEquals("bar","`foo`_bar_foo");
     }
 
     @Test
@@ -42,7 +47,7 @@ public class TestReplacer {
         // text       : foo
         // result     : bar
         // placeholder: foo_`bar`_foo
-        assertEquals("bar",replace("foo_`bar`_foo"));
+        assertReplaceEquals("bar","foo_`bar`_foo");
     }
 
     @Test
@@ -52,7 +57,7 @@ public class TestReplacer {
         // text       : foo
         // result     : bar
         // placeholder: `foo`_`bar`_foo
-        assertEquals("bar", replace("`foo`_`bar`_foo"));
+        assertReplaceEquals("bar", "`foo`_`bar`_foo");
     }
 
     @Test
@@ -62,7 +67,7 @@ public class TestReplacer {
         // text       : foo_bar_foo
         // result     : foo bar foo
         // placeholder: `_`_` `_foo_bar_foo
-        assertEquals("foo bar foo", replace("`_`_` `_foo_bar_foo"));
+        assertReplaceEquals("foo bar foo", "`_`_` `_foo_bar_foo");
     }
 
     @Test
@@ -72,7 +77,7 @@ public class TestReplacer {
         // text       : The cat stared at the other cat from across the room.
         // result     : The dog stared at the other dog from across the room.
         // placeholder: `cat`_`dog`_The cat stared at the other cat from across the room.
-        assertEquals("The dog stared at the other dog from across the room.", replace("`cat`_`dog`_The cat stared at the other cat from across the room."));
+        assertReplaceEquals("The dog stared at the other dog from across the room.", "`cat`_`dog`_The cat stared at the other cat from across the room.");
     }
 
     @Test
@@ -82,7 +87,7 @@ public class TestReplacer {
         // text       : His name was "foo".
         // result     : His name was bar.
         // placeholder: `"foo"`_`bar`_His name was "foo".
-        assertEquals("His name was bar.", replace("`\"foo\"`_`bar`_His name was \"foo\"."));
+        assertReplaceEquals("His name was bar.", "`\"foo\"`_`bar`_His name was \"foo\".");
     }
 
     @Test
@@ -92,7 +97,7 @@ public class TestReplacer {
         // text       : His name was `foo`.
         // result     : His name was bar.
         // placeholder: `\`foo\``_`bar`_His name was `foo`.
-        assertEquals("His name was bar.", replace("`\\`foo\\``_`bar`_His name was `foo`."));
+        assertReplaceEquals("His name was bar.", "`\\`foo\\``_`bar`_His name was `foo`.");
     }
 
     @Test
@@ -102,17 +107,18 @@ public class TestReplacer {
         // text       : His name was `foo`.
         // result     : His name was `bar`.
         // placeholder: \`foo\`_\`bar\`_His name was `foo`.
-        assertEquals("His name was `bar`.", replace("\\`foo\\`_\\`bar\\`_His name was `foo`."));
+        assertReplaceEquals("His name was `bar`.", "\\`foo\\`_\\`bar\\`_His name was `foo`.");
     }
 
-
-
-    private String replace(String input) {
-        ReplaceArguments regexArgs = regexReplacer.parse(input);
-        ReplaceArguments naiveArgs = naiveReplacer.parse(input);
-        assertEquals(regexArgs, naiveArgs);
-        if(regexArgs == null) return null;
-        return Replacer.replace(regexArgs);
+    private static void assertReplaceEquals(String expected, String placeholder) {
+        assertEquals(expected, REGEX_REPLACER.parseAndReplace(placeholder));
+        assertEquals(expected, NAIVE_REPLACER.parseAndReplace(placeholder));
     }
+
+    private static void assertReplaceNull(String placeholder) {
+        assertNull(REGEX_REPLACER.parseAndReplace(placeholder));
+        assertNull(NAIVE_REPLACER.parseAndReplace(placeholder));
+    }
+
 
 }

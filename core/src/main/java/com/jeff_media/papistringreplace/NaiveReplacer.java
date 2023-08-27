@@ -64,6 +64,8 @@ public class NaiveReplacer implements Parser {
                     inBackticks = false;
                     continue;
                     //ended = true;
+                } else {
+                    return null;
                 }
             }
             if (current == Parser.UNDERSCORE) {
@@ -83,16 +85,18 @@ public class NaiveReplacer implements Parser {
             builder.append(current);
         }
 
-//        System.out.println("Done parsing:");
-//        System.out.println("Search: " + search);
-//        System.out.println("Replace: " + replace);
-//        System.out.println("Text: " + text);
+
 
         if(replace == null) {
             return null;
         }
 
         String text = builder.toString();
+
+//        System.out.println("Done parsing:");
+//        System.out.println("Search: " + search);
+//        System.out.println("Replace: " + replace);
+//        System.out.println("Text: " + text);
 
         return new ReplaceArguments(search, replace, text);
     }
