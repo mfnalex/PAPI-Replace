@@ -23,11 +23,11 @@ public class NaiveReplacer implements Parser {
 
         for (final char current : input.toCharArray()) {
 
-            System.out.println("Current char: " + current);
+            //System.out.println("Current char: " + current);
 
             // If search and replace are already set, we're parsing the <text> section which does not require any special handling
             if (search != null && replace != null) {
-                System.out.println("    This is part of <text>");
+                //System.out.println("    This is part of <text>");
                 builder.append(current);
                 continue;
             }
@@ -87,7 +87,7 @@ public class NaiveReplacer implements Parser {
                     continue;
                     //ended = true;
                 } else {
-                    System.out.println("Return null");
+                    //System.out.println("Return null");
                     return null;
                 }
             }
@@ -110,19 +110,19 @@ public class NaiveReplacer implements Parser {
 
 
         if (replace == null) {
-            System.out.println("replace is null");
+            //System.out.println("replace is null");
             return null;
         }
         if (search.isEmpty()) {
-            System.out.println("search is empty");
+            //System.out.println("search is empty");
             return null;
         }
 
         String result = builder.toString();
 
-        System.out.println("Search: " + search);
-        System.out.println("Replace: " + replace);
-        System.out.println("Result: " + result);
+        //System.out.println("Search: " + search);
+        //System.out.println("Replace: " + replace);
+        //System.out.println("Result: " + result);
 
         return new ReplaceArguments(search, replace, result);
     }

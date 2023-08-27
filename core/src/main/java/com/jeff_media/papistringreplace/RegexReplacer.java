@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 public class RegexReplacer implements Parser {
 
     private static final Pattern PATTERN =
-            Pattern.compile("^((`(?<searchBt>([^`]|\\\\`)+)`)|(?<search>([^_`]|\\\\`)+))_((`(?<replaceBt>([^`]|\\\\`)+)`)|(?<replace>([^_`]|\\\\`)+))_(?<text>.*)$");
+            Pattern.compile("^((`(?<searchBt>([^`]|\\\\`)+)`)|(?<search>([^_`]|\\\\`)+))_((`(?<replaceBt>([^`]|\\\\`)*)`)|(?<replace>([^_`]|\\\\`)*))_(?<text>.*)$");
 
     private static String unescapeBackticks(String input) {
         return input.replace("\\`", "`");
@@ -29,6 +29,10 @@ public class RegexReplacer implements Parser {
         String search = Group.SEARCH.get(matcher)/*.replace("\\\\", "\\")*/;
         String replace = Group.REPLACE.get(matcher)/*.replace("\\\\", "\\")*/;
         String text = Group.TEXT.get(matcher);
+
+        //System.out.println("Rgx Search: " + search);
+        //System.out.println("Rgx Replace: " + replace);
+        //System.out.println("Rgx Text: " + text);
 
         return new ReplaceArguments(search, replace, text);
     }
