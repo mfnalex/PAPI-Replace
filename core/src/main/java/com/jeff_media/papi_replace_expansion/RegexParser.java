@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 /**
  * A robust implementation of {@link Parser} that uses regular expressions to parse the input. This is currently
- * not used because I'll first have to benchmark whether it's slower than the {@link NaiveReplacer}.
+ * not used because I'll first have to benchmark whether it's slower than the {@link NaiveParser}.
  */
 public class RegexParser implements Parser {
 
