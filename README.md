@@ -47,19 +47,30 @@ If your `<search>` or `<replacement>` contains any backticks, you have to escape
 ## Note
 This is a standalone plugin that hooks into PAPI, not an ecloud extension. You'll have to put the .jar into your plugins/ folder and restart the server.
 
-## Todo
-Add configurable templates that can be used, for example:
+[//]: # (## Todo)
 
-```yaml
-worldnames:
-  - search: world
-    replace: &aWorld
-  - search: world_nether
-    replace: &cNether
-  - search: world_the_end
-    replace: &9End
- ```
-You could then use this template together with other placeholders: `%replace_template_worldnames_{player_world}%` would return `&cNether` for a player in world_nether.
+[//]: # (Add configurable templates that can be used, for example:)
+
+[//]: # ()
+[//]: # (```yaml)
+
+[//]: # (worldnames:)
+
+[//]: # (  - search: world)
+
+[//]: # (    replace: &aWorld)
+
+[//]: # (  - search: world_nether)
+
+[//]: # (    replace: &cNether)
+
+[//]: # (  - search: world_the_end)
+
+[//]: # (    replace: &9End)
+
+[//]: # ( ```)
+
+[//]: # (You could then use this template together with other placeholders: `%replace_template_worldnames_{player_world}%` would return `&cNether` for a player in world_nether.)
 
 ## Donate
 https://paypal.me/mfnalex
