@@ -10,6 +10,7 @@ import org.jetbrains.annotations.Nullable;
 public class ReplacePlaceholderExpansion extends PlaceholderExpansion {
 
     private final Plugin plugin;
+    private final Replacer replacer = new RegexReplacer();
 
     public ReplacePlaceholderExpansion(PAPIStringReplace plugin) {
         this.plugin = plugin;

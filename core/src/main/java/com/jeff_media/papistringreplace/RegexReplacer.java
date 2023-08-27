@@ -1,19 +1,28 @@
 package com.jeff_media.papistringreplace;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegexReplacer {
-
-    private static final Pattern PATTERN_BOTH_QUOTED =
-            Pattern.compile("^`(?<search>([^`]|\\\\`)+)`_`(?<replace>([^`]|\\\\`)+)`_(?<text>.*)$");
-
-    private static final Pattern PATTERN_FIRST_QUOTE_OPTIONAL =
-            Pattern.compile("^((`(?<searchBt>([^`]|\\\\`)+)`)|(?<search>([^_`]|\\\\`)+))_`(?<replace>([^`]|\\\\`)+)`_(?<text>.*)$");
+public class RegexReplacer implements Parser {
 
     private static final Pattern PATTERN =
             Pattern.compile("^((`(?<searchBt>([^`]|\\\\`)+)`)|(?<search>([^_`]|\\\\`)+))_((`(?<replaceBt>([^`]|\\\\`)+)`)|(?<replace>([^_`]|\\\\`)+))_(?<text>.*)$");
+
+    @Override
+    public @Nullable ReplaceArguments parse(@NotNull String input) {
+        Matcher matcher = PATTERN.matcher(input);
+        if(!matcher.matches()) return null;
+
+        String search = Group.SEARCH.get(matcher);
+        String replace = Group.REPLACE.get(matcher);
+        String text = Group.TEXT.get(matcher);
+
+        return new ReplaceArguments(search, replace, text);
+    }
 
     private enum Group {
         SEARCH("search", "searchBt"),
@@ -46,21 +55,6 @@ public class RegexReplacer {
             Objects.requireNonNull(result, "Couldn't find group " + name() + " even though it should exist");
             return unescapeBackticks(result);
         }
-    }
-
-    public static String replace(String input) {
-        Matcher matcher = PATTERN.matcher(input);
-        if(!matcher.matches()) return null;
-
-        String search = Group.SEARCH.get(matcher);
-        String replace = Group.REPLACE.get(matcher);
-        String text = Group.TEXT.get(matcher);
-
-//        System.out.println("search : " + search);
-//        System.out.println("replace: " + replace);
-//        System.out.println("text   : " + text);
-
-        return text.replace(search, replace);
     }
 
     private static String unescapeBackticks(String input) {

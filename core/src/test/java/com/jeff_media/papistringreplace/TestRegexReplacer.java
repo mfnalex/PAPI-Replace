@@ -2,11 +2,13 @@ package com.jeff_media.papistringreplace;
 
 import org.junit.jupiter.api.Test;
 
-import static com.jeff_media.papistringreplace.RegexReplacer.replace;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class TestRegexReplacer {
+
+    // I wanna run all these tests for NaiveReplacer too!
+    private final Parser parser = new RegexReplacer();
 
     @Test
     public void replace_RegexNotMatching_Return_Null() {
@@ -101,6 +103,14 @@ public class TestRegexReplacer {
         // result     : His name was `bar`.
         // placeholder: \`foo\`_\`bar\`_His name was `foo`.
         assertEquals("His name was `bar`.", replace("\\`foo\\`_\\`bar\\`_His name was `foo`."));
+    }
+
+
+
+    private String replace(String input) {
+        ReplaceArguments args = parser.parse(input);
+        if(args == null) return null;
+        return Replacer.replace(args);
     }
 
 }
