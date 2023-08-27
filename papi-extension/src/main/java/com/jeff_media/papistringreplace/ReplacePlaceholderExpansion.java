@@ -32,7 +32,7 @@ public class ReplacePlaceholderExpansion extends PlaceholderExpansion {
         version = tmpVersion;
     }
 
-    private final Parser replacer = new RegexReplacer();
+    private final Parser replacer = new NaiveReplacer();
 
     @Override
     public @NotNull String getIdentifier() {

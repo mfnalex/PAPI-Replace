@@ -23,6 +23,8 @@ public class NaiveReplacer implements Parser {
 
         for (final char current : input.toCharArray()) {
 
+            //System.out.println("Currenc char: " + current);
+
             // If search and replace are already set, we're parsing the <text> section which does not require any special handling
             if (search != null && replace != null) {
                 builder.append(current);
@@ -44,12 +46,18 @@ public class NaiveReplacer implements Parser {
                 // Two escapes in a row are actually two escapes in a row!
                 if (current == Parser.ESCAPE) {
                     lastWasEscape = false;
-                    builder.append(Parser.TWO_ESCAPES);
+                    builder.append(Parser.ESCAPE);
                     continue;
                 } else if (current == Parser.BACKTICK) {
                     lastWasEscape = false;
                     builder.append(Parser.BACKTICK);
                     continue;
+                } else if (current == Parser.UNDERSCORE) {
+                    if(!inBackticks) {
+                        builder.append(Parser.ESCAPE);
+                        lastWasEscape = false;
+                        // Do NOT continue!
+                    }
                 } else {
                     lastWasEscape = false;
                     builder.append(Parser.ESCAPE);
@@ -70,6 +78,7 @@ public class NaiveReplacer implements Parser {
                     continue;
                     //ended = true;
                 } else {
+                    //System.out.println("Return null");
                     return null;
                 }
             }
@@ -92,10 +101,17 @@ public class NaiveReplacer implements Parser {
 
 
         if (replace == null) {
+            //System.out.println("replace is null");
             return null;
         }
 
-        return new ReplaceArguments(search, replace, builder.toString());
+        String result = builder.toString();
+
+        //System.out.println("Search: " + search);
+        //System.out.println("Replace: " + replace);
+        //System.out.println("Result: " + result);
+
+        return new ReplaceArguments(search, replace, result);
     }
 
 }
