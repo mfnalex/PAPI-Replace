@@ -18,7 +18,7 @@ public class ReplacePlaceholderExpansion extends PlaceholderExpansion {
 
     @Override
     public @NotNull String getIdentifier() {
-        return "replaceunderscores";
+        return "replace";
     }
 
     @Override
