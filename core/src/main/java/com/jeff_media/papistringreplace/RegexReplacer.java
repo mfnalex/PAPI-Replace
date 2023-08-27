@@ -21,8 +21,8 @@ public class RegexReplacer implements Parser {
         Matcher matcher = PATTERN.matcher(input);
         if (!matcher.matches()) return null;
 
-        String search = Group.SEARCH.get(matcher).replace("\\\\", "\\");
-        String replace = Group.REPLACE.get(matcher).replace("\\\\", "\\");
+        String search = Group.SEARCH.get(matcher)/*.replace("\\\\", "\\")*/;
+        String replace = Group.REPLACE.get(matcher)/*.replace("\\\\", "\\")*/;
         String text = Group.TEXT.get(matcher);
 
         return new ReplaceArguments(search, replace, text);
@@ -54,7 +54,7 @@ public class RegexReplacer implements Parser {
         public String get(Matcher matcher) {
             String result = matcher.group(groupName);
             if (result == null) {
-                result = matcher.group(groupNameBackticked);
+                result = matcher.group(groupNameBackticked).replace(Parser.TWO_ESCAPES, Parser.ESCAPE + "");
             }
             Objects.requireNonNull(result, "Couldn't find group " + name() + " even though it should exist");
             return unescapeBackticks(result);

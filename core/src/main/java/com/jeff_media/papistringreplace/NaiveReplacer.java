@@ -44,9 +44,12 @@ public class NaiveReplacer implements Parser {
             // If the last char was an escape, check if the current char is a backtick or an escape
             if (lastWasEscape) {
 
-                // Two escapes in a row are actually two escapes in a row!
+                // Two escapes in a row are actually two escapes in a row unless when in backticks
                 if (current == Parser.ESCAPE) {
                     lastWasEscape = false;
+                    if(!inBackticks) {
+                        builder.append(Parser.ESCAPE);
+                    }
                     builder.append(Parser.ESCAPE);
                     continue;
                 }

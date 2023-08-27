@@ -190,5 +190,25 @@ public class TestReplacer {
         assertReplaceEquals("The sound is called minecraft:sound\\soundname!", "minecraft:sound/soundname_`minecraft:sound\\\\soundname`_The sound is called minecraft:sound/soundname!");
     }
 
+    @Test
+    public void replace_DoubleSlash_With_SingleSlash() {
+        // search     : //
+        // replace    : /
+        // text       : //
+        // result     : /
+        // placeholder: //_/_//
+        assertReplaceEquals("/", "//_/_//");
+    }
+
+    @Test
+    public void replace_DoubleBackSlash_With_SingleBackSlash() {
+        // search     : \\
+        // replace    : \
+        // text       : \\
+        // result     : \
+        // placeholder: \\_\_\\
+        assertReplaceEquals("\\", "\\\\_\\_\\\\");
+    }
+
 
 }
