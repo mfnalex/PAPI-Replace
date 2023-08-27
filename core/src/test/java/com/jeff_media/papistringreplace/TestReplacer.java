@@ -26,8 +26,18 @@ public class TestReplacer {
     }
 
     @Test
-    public void replace_Unespaced_Backtick_Return_Null() {
+    public void replace_Unescaped_Backtick_Return_Null() {
         assertReplaceNull("f`o`o_bar_foo");
+    }
+
+    @Test
+    public void replace_Escaped_Backtick() {
+        // search     : `
+        // replace    : "
+        // text       : `hello`
+        // result     : "hello"
+        // placeholder: \`_"_`hello`
+        assertReplaceEquals("\"hello\"", "\\`_\"_`hello`");
     }
 
     @Test
