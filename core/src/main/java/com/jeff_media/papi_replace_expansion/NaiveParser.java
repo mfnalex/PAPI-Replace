@@ -1,4 +1,4 @@
-package com.jeff_media.papistringreplace;
+package com.jeff_media.papi_replace_expansion;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -7,7 +7,7 @@ import org.jetbrains.annotations.Nullable;
  * A naive implementation of {@link Parser}. It parses the input String by iterating over all characters, returning null
  * early if it's not a valid input.
  */
-public class NaiveReplacer implements Parser {
+public class NaiveParser implements Parser {
 
     @Override
     public @Nullable ReplaceArguments parse(@NotNull String input) {

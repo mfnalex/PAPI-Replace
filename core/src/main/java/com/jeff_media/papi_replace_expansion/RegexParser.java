@@ -1,4 +1,4 @@
-package com.jeff_media.papistringreplace;
+package com.jeff_media.papi_replace_expansion;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -9,10 +9,10 @@ import java.util.regex.Pattern;
 
 /**
  * A robust implementation of {@link Parser} that uses regular expressions to parse the input. This is currently
- * not used because the performance is obviously worse than the {@link NaiveReplacer}, however if somebody finds
+ * not used because the performance is obviously worse than the {@link NaiveParser}, however if somebody finds
  * a bug in the naive implementation, we could easily switch to this one until the bug is fixed.
  */
-public class RegexReplacer implements Parser {
+public class RegexParser implements Parser {
 
     private static final Pattern PATTERN =
             Pattern.compile("^((`(?<searchBt>([^`]|\\\\`)+)`)|(?<search>([^_`]|\\\\`)+))_((`(?<replaceBt>([^`]|\\\\`)*)`)|(?<replace>([^_`]|\\\\`)*))_(?<text>.*)$");

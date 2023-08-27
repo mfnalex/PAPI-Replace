@@ -1,4 +1,4 @@
-package com.jeff_media.papistringreplace;
+package com.jeff_media.papi_replace_expansion;
 
 import org.junit.jupiter.api.Test;
 
@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class TestReplacer {
 
-    private static final Parser REGEX_REPLACER = new RegexReplacer();
-    private static final Parser NAIVE_REPLACER = new NaiveReplacer();
+    private static final Parser REGEX_REPLACER = new RegexParser();
+    private static final Parser NAIVE_REPLACER = new NaiveParser();
 
     private static void assertReplaceEquals(String expected, String placeholder) {
         assertEquals(expected, REGEX_REPLACER.parseAndReplace(placeholder));

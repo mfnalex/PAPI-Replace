@@ -1,4 +1,4 @@
-package com.jeff_media.papistringreplace;
+package com.jeff_media.papi_replace_expansion;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
@@ -32,7 +32,7 @@ public class ReplacePlaceholderExpansion extends PlaceholderExpansion {
         version = tmpVersion;
     }
 
-    private final Parser replacer = new NaiveReplacer();
+    private final Parser replacer = new NaiveParser();
 
     @Override
     public @NotNull String getIdentifier() {

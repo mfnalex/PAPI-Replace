@@ -1,4 +1,4 @@
-package com.jeff_media.papistringreplace;
+package com.jeff_media.papi_replace_expansion;
 
 import org.jetbrains.annotations.NotNull;
 
