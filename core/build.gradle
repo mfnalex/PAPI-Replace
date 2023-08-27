@@ -1,0 +1,4 @@
+plugins {
+    id 'papi-replace-java-conventions'
+    id 'papi-replace-test-conventions'
+}

@@ -1,0 +1,54 @@
+plugins {
+    id 'papi-replace-java-conventions'
+    id 'com.github.johnrengelman.shadow'
+}
+
+repositories {
+    maven {
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+        content {
+            includeGroup 'org.bukkit'
+            includeGroup 'org.spigotmc'
+        }
+    }
+    maven {
+        url = 'https://oss.sonatype.org/content/repositories/snapshots'
+        content {
+            includeGroup 'net.md-5'
+        }
+    }
+    maven {
+        url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
+        content {
+            includeGroup 'me.clip'
+        }
+    }
+
+}
+
+dependencies {
+    implementation project(':core')
+    compileOnly 'org.spigotmc:spigot-api:1.8-R0.1-SNAPSHOT'
+    compileOnly 'me.clip:placeholderapi:2.11.3'
+}
+
+processResources {
+    filteringCharset 'UTF-8'
+    filesMatching('plugin.yml') {
+        expand(['version': project.version])
+    }
+}
+
+build {
+    dependsOn shadowJar
+}
+
+shadowJar {
+    archiveClassifier = ''
+}
+
+tasks.register("exportToBukkitTestServer", Copy) {
+    dependsOn build
+    from shadowJar.archiveFile
+    into 'C:\\mctest\\plugins'
+}

@@ -42,6 +42,6 @@ public class ReplacePlaceholderExpansion extends PlaceholderExpansion {
 
     @Override
     public @Nullable String onPlaceholderRequest(Player player, @NotNull String params) {
-        return this.onRequest(player, params);
+        return RegexReplacer.replace(params);
     }
 }

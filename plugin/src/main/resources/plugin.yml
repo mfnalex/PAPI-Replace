@@ -1,5 +1,5 @@
 name: PAPIStringReplace
-version: 1.0
+version: ${version}
 main: com.jeff_media.papistringreplace.PAPIStringReplace
 api-version: 1.13
 authors: [mfnalex, JEFF Media GbR]

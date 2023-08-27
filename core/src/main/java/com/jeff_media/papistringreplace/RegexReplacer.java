@@ -56,9 +56,9 @@ public class RegexReplacer {
         String replace = Group.REPLACE.get(matcher);
         String text = Group.TEXT.get(matcher);
 
-        System.out.println("search : " + search);
-        System.out.println("replace: " + replace);
-        System.out.println("text   : " + text);
+//        System.out.println("search : " + search);
+//        System.out.println("replace: " + replace);
+//        System.out.println("text   : " + text);
 
         return text.replace(search, replace);
     }
