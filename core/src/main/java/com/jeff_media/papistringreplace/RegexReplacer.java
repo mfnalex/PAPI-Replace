@@ -12,10 +12,14 @@ public class RegexReplacer implements Parser {
     private static final Pattern PATTERN =
             Pattern.compile("^((`(?<searchBt>([^`]|\\\\`)+)`)|(?<search>([^_`]|\\\\`)+))_((`(?<replaceBt>([^`]|\\\\`)+)`)|(?<replace>([^_`]|\\\\`)+))_(?<text>.*)$");
 
+    private static String unescapeBackticks(String input) {
+        return input.replace("\\`", "`");
+    }
+
     @Override
     public @Nullable ReplaceArguments parse(@NotNull String input) {
         Matcher matcher = PATTERN.matcher(input);
-        if(!matcher.matches()) return null;
+        if (!matcher.matches()) return null;
 
         String search = Group.SEARCH.get(matcher);
         String replace = Group.REPLACE.get(matcher);
@@ -49,16 +53,12 @@ public class RegexReplacer implements Parser {
 
         public String get(Matcher matcher) {
             String result = matcher.group(groupName);
-            if(result == null) {
+            if (result == null) {
                 result = matcher.group(groupNameBackticked);
             }
             Objects.requireNonNull(result, "Couldn't find group " + name() + " even though it should exist");
             return unescapeBackticks(result);
         }
-    }
-
-    private static String unescapeBackticks(String input) {
-        return input.replace("\\`", "`");
     }
 
 }

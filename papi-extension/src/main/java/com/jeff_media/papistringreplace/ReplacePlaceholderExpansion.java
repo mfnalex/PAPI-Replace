@@ -47,11 +47,6 @@ public class ReplacePlaceholderExpansion extends PlaceholderExpansion {
     }
 
     @Override
-    public boolean persist() {
-        return true;
-    }
-
-    @Override
     public @Nullable String onRequest(OfflinePlayer player, @NotNull String params) {
         return parseAndReplace(params);
     }
@@ -64,4 +59,5 @@ public class ReplacePlaceholderExpansion extends PlaceholderExpansion {
     private String parseAndReplace(String input) {
         return replacer.parseAndReplace(input);
     }
+
 }

@@ -10,6 +10,16 @@ public class TestReplacer {
     private static final Parser REGEX_REPLACER = new RegexReplacer();
     private static final Parser NAIVE_REPLACER = new NaiveReplacer();
 
+    private static void assertReplaceEquals(String expected, String placeholder) {
+        assertEquals(expected, REGEX_REPLACER.parseAndReplace(placeholder));
+        assertEquals(expected, NAIVE_REPLACER.parseAndReplace(placeholder));
+    }
+
+    private static void assertReplaceNull(String placeholder) {
+        assertNull(REGEX_REPLACER.parseAndReplace(placeholder));
+        assertNull(NAIVE_REPLACER.parseAndReplace(placeholder));
+    }
+
     @Test
     public void replace_NotMatching_Return_Null() {
         assertReplaceNull("test");
@@ -27,7 +37,7 @@ public class TestReplacer {
         // text       : foo
         // result     : bar
         // placeholder: foo_bar_foo
-        assertReplaceEquals("bar","foo_bar_foo");
+        assertReplaceEquals("bar", "foo_bar_foo");
     }
 
     @Test
@@ -37,7 +47,7 @@ public class TestReplacer {
         // text       : foo
         // result     : bar
         // placeholder: `foo`_bar_foo
-        assertReplaceEquals("bar","`foo`_bar_foo");
+        assertReplaceEquals("bar", "`foo`_bar_foo");
     }
 
     @Test
@@ -47,7 +57,7 @@ public class TestReplacer {
         // text       : foo
         // result     : bar
         // placeholder: foo_`bar`_foo
-        assertReplaceEquals("bar","foo_`bar`_foo");
+        assertReplaceEquals("bar", "foo_`bar`_foo");
     }
 
     @Test
@@ -108,16 +118,6 @@ public class TestReplacer {
         // result     : His name was `bar`.
         // placeholder: \`foo\`_\`bar\`_His name was `foo`.
         assertReplaceEquals("His name was `bar`.", "\\`foo\\`_\\`bar\\`_His name was `foo`.");
-    }
-
-    private static void assertReplaceEquals(String expected, String placeholder) {
-        assertEquals(expected, REGEX_REPLACER.parseAndReplace(placeholder));
-        assertEquals(expected, NAIVE_REPLACER.parseAndReplace(placeholder));
-    }
-
-    private static void assertReplaceNull(String placeholder) {
-        assertNull(REGEX_REPLACER.parseAndReplace(placeholder));
-        assertNull(NAIVE_REPLACER.parseAndReplace(placeholder));
     }
 
 

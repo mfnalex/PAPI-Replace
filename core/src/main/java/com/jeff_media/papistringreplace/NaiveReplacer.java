@@ -86,8 +86,7 @@ public class NaiveReplacer implements Parser {
         }
 
 
-
-        if(replace == null) {
+        if (replace == null) {
             return null;
         }
 

@@ -16,6 +16,7 @@ public interface Parser {
 
     /**
      * Parses a string into a {@link ReplaceArguments} object.
+     *
      * @param input the string to parse
      * @return the parsed arguments, or null if the input was invalid
      */
