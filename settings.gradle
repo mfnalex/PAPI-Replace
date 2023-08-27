@@ -1,4 +1,3 @@
 rootProject.name = 'papi-replace'
 include('core')
 include('papi-extension')
-include('benchmark')
