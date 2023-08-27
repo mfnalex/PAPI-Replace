@@ -113,6 +113,10 @@ public class NaiveReplacer implements Parser {
             System.out.println("replace is null");
             return null;
         }
+        if (search.isEmpty()) {
+            System.out.println("search is empty");
+            return null;
+        }
 
         String result = builder.toString();
 

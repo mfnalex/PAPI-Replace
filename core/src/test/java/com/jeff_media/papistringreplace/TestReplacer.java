@@ -31,6 +31,14 @@ public class TestReplacer {
     }
 
     @Test
+    public void replace_EmptySearch_Return_Null() {
+        assertReplaceNull("__");
+        assertReplaceNull("_replace_");
+        assertReplaceNull("_replace_text");
+        assertReplaceNull("__text");
+    }
+
+    @Test
     public void replace_Escaped_Backtick() {
         // search     : `
         // replace    : "
