@@ -8,7 +8,7 @@ PlaceholderAPI extension to replace Strings. Works with ALL characters!
     
 `<text>` is the String to search in.
 
-If `<search>` or `<replacement>` contains an underscore, the whole `<search>` or `<replacement>` has to be surrounded by `"`!
+If `<search>` or `<replacement>` contains an underscore, the whole `<search>` or `<replacement>` has to be surrounded with backticks `` ` `` (see examples below).
 
 `%replaceunderscores_<search>_<replacement>_<text>%`
 

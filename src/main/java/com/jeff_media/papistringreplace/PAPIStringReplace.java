@@ -1,8 +1,8 @@
-package com.jeff_media.papiunderscorereplacer;
+package com.jeff_media.papistringreplace;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class PAPIUnderscoreReplacer extends JavaPlugin {
+public class PAPIStringReplace extends JavaPlugin {
 
     @Override
     public void onEnable() {

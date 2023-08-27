@@ -1,4 +1,4 @@
-package com.jeff_media.papiunderscorereplacer;
+package com.jeff_media.papistringreplace;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
@@ -7,13 +7,11 @@ import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.regex.Pattern;
-
 public class ReplacePlaceholderExpansion extends PlaceholderExpansion {
 
     private final Plugin plugin;
 
-    public ReplacePlaceholderExpansion(PAPIUnderscoreReplacer plugin) {
+    public ReplacePlaceholderExpansion(PAPIStringReplace plugin) {
         this.plugin = plugin;
     }
 
