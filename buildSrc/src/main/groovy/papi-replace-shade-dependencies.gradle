@@ -1,0 +1,12 @@
+plugins {
+    id 'com.github.johnrengelman.shadow'
+}
+
+tasks {
+    build {
+        dependsOn tasks.shadowJar
+    }
+    shadowJar {
+        archiveClassifier = ''
+    }
+}

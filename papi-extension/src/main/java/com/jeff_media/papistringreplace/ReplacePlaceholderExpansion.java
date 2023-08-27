@@ -3,18 +3,33 @@ package com.jeff_media.papistringreplace;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 public class ReplacePlaceholderExpansion extends PlaceholderExpansion {
 
-    private final Plugin plugin;
-    private final Parser replacer = new RegexReplacer();
+    private static final String version;
 
-    public ReplacePlaceholderExpansion(PAPIStringReplace plugin) {
-        this.plugin = plugin;
+    static {
+        String tmpVersion = "<unknown>";
+        try (InputStream stream = ReplacePlaceholderExpansion.class.getResourceAsStream("/papi-replace-extension.version");
+             InputStreamReader reader = new InputStreamReader(stream);
+             BufferedReader bufferedReader = new BufferedReader(reader);
+        ) {
+            tmpVersion = bufferedReader.readLine();
+        } catch (IOException ignored) {
+
+        }
+
+        version = tmpVersion;
     }
+
+    private final Parser replacer = new NaiveReplacer();
 
     @Override
     public @NotNull String getIdentifier() {
@@ -28,7 +43,7 @@ public class ReplacePlaceholderExpansion extends PlaceholderExpansion {
 
     @Override
     public @NotNull String getVersion() {
-        return plugin.getDescription().getVersion();
+        return version;
     }
 
     @Override

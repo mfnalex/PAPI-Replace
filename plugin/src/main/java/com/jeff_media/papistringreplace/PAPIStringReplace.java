@@ -6,7 +6,7 @@ public class PAPIStringReplace extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        new ReplacePlaceholderExpansion(this).register();
+        new ReplacePlaceholderExpansion().register();
     }
 
 }

@@ -6,12 +6,18 @@ plugins {
 }
 
 dependencies {
-    implementation project(':papi-extension')
+    implementation project(':core')
 }
 
 processResources {
     filteringCharset 'UTF-8'
-    filesMatching('plugin.yml') {
+    filesMatching('papi-replace-extension.version') {
         expand(['version': project.version])
     }
+}
+
+tasks.shadowJar {
+    minimize()
+    archiveBaseName = 'Expansion-replace'
+    archiveVersion = ''
 }
