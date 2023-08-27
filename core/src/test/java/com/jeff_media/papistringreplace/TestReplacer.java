@@ -31,7 +31,7 @@ public class TestReplacer {
     }
 
     @Test
-    public void replace_EmptySearch_Return_Null() {
+    public void replace_EmptySearch_AlwaysReturn_Null() {
         assertReplaceNull("__");
         assertReplaceNull("_replace_");
         assertReplaceNull("_replace_text");
@@ -42,7 +42,17 @@ public class TestReplacer {
     public void replace_EmptyText_Return_Empty() {
         assertReplaceEquals("", "search__");
         assertReplaceEquals("", "search_replace_");
-        assertReplaceEquals("", "search__searchsearchsearch");
+    }
+
+    @Test
+    public void replace_Whole_Text_With_Empty_Replace_Return_Empty() {
+        assertReplaceEquals("", "search__search");
+        assertReplaceEquals("", "search__searchsearch");
+    }
+
+    @Test
+    public void replace_Part_Of_Text_With_Empty_Replace() {
+        assertReplaceEquals("cat", "dog__dogcatdog");
     }
 
     @Test
