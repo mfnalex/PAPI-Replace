@@ -21,4 +21,12 @@ public interface Parser {
      */
     @Nullable ReplaceArguments parse(@NotNull String input);
 
+    default @Nullable String parseAndReplace(String input) {
+        ReplaceArguments args = parse(input);
+        if (args == null) {
+            return null;
+        }
+        return Replacer.replace(args);
+    }
+
 }

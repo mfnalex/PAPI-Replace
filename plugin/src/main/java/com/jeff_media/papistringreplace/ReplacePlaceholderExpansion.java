@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Nullable;
 public class ReplacePlaceholderExpansion extends PlaceholderExpansion {
 
     private final Plugin plugin;
-    private final Replacer replacer = new RegexReplacer();
+    private final Parser replacer = new RegexReplacer();
 
     public ReplacePlaceholderExpansion(PAPIStringReplace plugin) {
         this.plugin = plugin;
@@ -38,11 +38,15 @@ public class ReplacePlaceholderExpansion extends PlaceholderExpansion {
 
     @Override
     public @Nullable String onRequest(OfflinePlayer player, @NotNull String params) {
-        return RegexReplacer.replace(params);
+        return parseAndReplace(params);
     }
 
     @Override
     public @Nullable String onPlaceholderRequest(Player player, @NotNull String params) {
-        return RegexReplacer.replace(params);
+        return parseAndReplace(params);
+    }
+
+    private String parseAndReplace(String input) {
+        return replacer.parseAndReplace(input);
     }
 }

@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class TestRegexReplacer {
+public class TestReplacer {
 
-    // I wanna run all these tests for NaiveReplacer too!
-    private final Parser parser = new RegexReplacer();
+    private final Parser regexReplacer = new RegexReplacer();
+    private final Parser naiveReplacer = new NaiveReplacer();
 
     @Test
     public void replace_RegexNotMatching_Return_Null() {
@@ -108,9 +108,11 @@ public class TestRegexReplacer {
 
 
     private String replace(String input) {
-        ReplaceArguments args = parser.parse(input);
-        if(args == null) return null;
-        return Replacer.replace(args);
+        ReplaceArguments regexArgs = regexReplacer.parse(input);
+        ReplaceArguments naiveArgs = naiveReplacer.parse(input);
+        assertEquals(regexArgs, naiveArgs);
+        if(regexArgs == null) return null;
+        return Replacer.replace(regexArgs);
     }
 
 }
