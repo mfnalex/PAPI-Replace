@@ -210,5 +210,25 @@ public class TestReplacer {
         assertReplaceEquals("\\", "\\\\_\\_\\\\");
     }
 
+    @Test
+    public void replace_DoubleBackSlash_With_SingleBackSlash_SearchInBackticks() {
+        // search     : \\
+        // replace    : \
+        // text       : \\
+        // result     : \
+        // placeholder: `\\\\`_\_\\
+        assertReplaceEquals("\\", "`\\\\\\\\`_\\_\\\\");
+    }
+
+    @Test
+    public void replace_DoubleBackSlash_With_SingleBackSlash_ReplaceInBackticks() {
+        // search     : \\
+        // replace    : \
+        // text       : \\
+        // result     : \
+        // placeholder: \\_`\\`_\\
+        assertReplaceEquals("\\", "\\\\_`\\\\`_\\\\");
+    }
+
 
 }
