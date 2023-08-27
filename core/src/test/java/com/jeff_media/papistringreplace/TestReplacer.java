@@ -41,6 +41,16 @@ public class TestReplacer {
     }
 
     @Test
+    public void replace_Escaped_Backtick_In_Backticks() {
+        // search     : `
+        // replace    : "
+        // text       : `hello`
+        // result     : "hello"
+        // placeholder: `\``_"_`hello`
+        assertReplaceEquals("\"hello\"", "`\\``_\"_`hello`");
+    }
+
+    @Test
     public void replace_Foo_With_Bar() {
         // search     : foo
         // replace    : bar
