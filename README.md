@@ -1,10 +1,18 @@
-PlaceholderAPI extension to replace underscores with anything you like.
+PlaceholderAPI extension to replace Strings. Works with ALL characters!
 
 ## Usage:
 
-`%replaceunderscores_<replacement>_text%`
+`<search>` is the String to search for.
 
-## Examples:
+`<replacement>` is the String to replace the search String with.
+    
+`<text>` is the String to search in.
+
+If `<search>` or `<replacement>` contains an underscore, the whole `<search>` or `<replacement>` has to be surrounded by `"`!
+
+`%replaceunderscores_<search>_<replacement>_<text>%`
+
+#### Examples:
 
 `%replaceunderscores_ _diamond_axe%` -> `diamond axe`
 

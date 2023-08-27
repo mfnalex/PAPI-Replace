@@ -6,6 +6,7 @@ public class PAPIUnderscoreReplacer extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        new UnderscoreReplacer(this).register();
+        new ReplacePlaceholderExpansion(this).register();
     }
+
 }
