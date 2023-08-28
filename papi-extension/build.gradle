@@ -21,3 +21,9 @@ tasks.shadowJar {
     archiveBaseName = 'Expansion-replace'
     archiveVersion = ''
 }
+
+tasks.register("copyToTestServer", Copy) {
+    dependsOn(build)
+    from shadowJar.archiveFile.get().asFile
+    into file("C:\\mctest\\plugins\\PlaceholderAPI\\expansions\\")
+}
