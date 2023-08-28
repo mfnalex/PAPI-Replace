@@ -49,7 +49,7 @@ If the `<search>` or `<replacement>` part is not in backticks, you don't have to
     - Placeholder: `%replace_foo_bar_my name is foo%`
     - Result: `my name is bar`
 - Replace underscores with spaces in `my_name_is_foo`:
-    - Placeholder: `` %replace_`_`_ _my_name_is_foo% ``
+    - Placeholder: `` %replace_`_`_` `_my_name_is_foo% ``
     - Result: `my name is foo`
 - The `<text>` part never requires escaping:
     - Placeholder: `` %replace_foo_bar_My name is `foo`!% ``
