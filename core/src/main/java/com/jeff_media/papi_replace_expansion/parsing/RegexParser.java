@@ -1,5 +1,6 @@
-package com.jeff_media.papi_replace_expansion;
+package com.jeff_media.papi_replace_expansion.parsing;
 
+import com.jeff_media.papi_replace_expansion.ReplaceArguments;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

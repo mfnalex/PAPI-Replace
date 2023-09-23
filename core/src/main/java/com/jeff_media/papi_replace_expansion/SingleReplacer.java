@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Applies a replacement to a string
  */
-public interface Replacer {
+public interface SingleReplacer {
 
     /**
      * Replaces all occurrences of the search string with the replace string in a text

@@ -1,0 +1,10 @@
+expansions:
+  replace:
+    templates:
+      worldnames:
+      - search: world
+        replace: "&aOverworld"
+      - search: world_nether
+        replace: "&cNether"
+      - search: world_the_end
+        replace: "&9The End"

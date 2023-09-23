@@ -55,6 +55,24 @@ If the `<search>` or `<replacement>` part is not in backticks, you don't have to
     - Placeholder: `` %replace_foo_bar_My name is `foo`!% ``
     - Result: `` my name is `bar`! ``
 
+## Bulk replacements / templates
+You can declare certain "templates" in the PlaceholderAPI main config.yml, for example like this:
+```yaml
+expansions:
+  replace:
+    templates:
+      worldnames: # Replaces world names with fancier ones
+        - search: world
+          replace: "&aOverworld"
+        - search: world_nether
+          replace: "&cNether"
+        - search: world_the_end
+          replace: "&9The End"
+```
+
+You can then use these templates in your placeholders and even use nested placeholders, like this:
+`%replace_template_worldnames_{player_world}%`
+
 ## Note
 
 This is a standalone PlaceholderAPI expansion. Do NOT put it into your plugins, but into the `expansions` folder of PlaceholderAPI.

@@ -2,9 +2,6 @@ plugins {
     id 'papi-replace-java-conventions'
     id 'papi-replace-test-conventions'
     id 'papi-replace-benchmark'
+    id 'papi-replace-spigot-dependency'
     id 'io.freefair.lombok'
-}
-
-dependencies {
-    //jmh 'org.projectlombok:lombok:1.18.28'
 }

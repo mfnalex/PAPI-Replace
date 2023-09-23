@@ -1,5 +1,7 @@
-package com.jeff_media.papi_replace_expansion;
+package com.jeff_media.papi_replace_expansion.parsing;
 
+import com.jeff_media.papi_replace_expansion.ReplaceArguments;
+import com.jeff_media.papi_replace_expansion.SingleReplacer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -39,7 +41,7 @@ public interface Parser {
         if (args == null) {
             return null;
         }
-        return Replacer.replace(args);
+        return SingleReplacer.replace(args);
     }
 
 }

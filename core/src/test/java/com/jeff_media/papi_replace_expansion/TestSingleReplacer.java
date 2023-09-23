@@ -1,11 +1,14 @@
 package com.jeff_media.papi_replace_expansion;
 
+import com.jeff_media.papi_replace_expansion.parsing.NaiveParser;
+import com.jeff_media.papi_replace_expansion.parsing.Parser;
+import com.jeff_media.papi_replace_expansion.parsing.RegexParser;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class TestReplacer {
+public class TestSingleReplacer {
 
     private static final Parser REGEX_REPLACER = new RegexParser();
     private static final Parser NAIVE_REPLACER = new NaiveParser();
